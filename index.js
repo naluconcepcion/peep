@@ -13,7 +13,9 @@ import { name as appName } from './app.json';
 export default function Providers() {
   return (
     <PaperProvider>
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </PaperProvider>
   );
 }
