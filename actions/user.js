@@ -1,13 +1,13 @@
 import Firebase, { db } from '../config/Firebase.js'
-import firebase from 'firebase'
 
 // define types
 export const UPDATE_EMAIL = 'UPDATE_EMAIL'
 export const UPDATE_FIRSTNAME = 'UPDATE_FIRSTNAME'
 export const UPDATE_LASTNAME = 'UPDATE_LASTNAME'
-export const UPDATE_LOCATION = 'UPDATE_LOCATION'
 export const UPDATE_USERNAME = 'UPDATE_USERNAME'
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
+export const UPDATE_MAJOR = 'UPDATE_MAJOR'
+export const UPDATE_GRAD = 'UPDATE_GRAD'
 
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
@@ -47,10 +47,17 @@ export const updatePassword = password => {
   }
 }
 
-export const updateLocation = location => {
+export const updateMajor = major => {
   return {
-    type: UPDATE_LOCATION,
-    payload: location
+    type: UPDATE_MAJOR,
+    payload: major
+  }
+}
+
+export const updateGradYear = gradYear => {
+  return {
+    type: UPDATE_GRAD,
+    payload: gradYear
   }
 }
 
@@ -92,7 +99,9 @@ export const getUser = uid => {
 export const signup = () => {
   return async (dispatch, getState) => {
     try {
-      const { username, firstName, lastName, email, password } = getState().user
+      const { username, firstName, lastName, major, gradYear, email, password } = getState().user
+      console.log("HERE")
+      console.log(getState().user)
 
       const response = await Firebase.auth().createUserWithEmailAndPassword(email, password)
       if (response.user.uid) {
@@ -100,9 +109,10 @@ export const signup = () => {
           uid: response.user.uid,
           username: username,
           email: email,
+          major: major,
+          gradYear: gradYear,
           firstName: firstName,
           lastName: lastName,
-          listings: [],
         }
 
         db.collection("users").doc(response.user.uid).set(user)

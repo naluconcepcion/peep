@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
-import { LOGIN, SIGNUP, UPDATE_EMAIL, UPDATE_PASSWORD, UPDATE_FIRSTNAME, UPDATE_LASTNAME, UPDATE_USERNAME, UPDATE_LOCATION,
+import { LOGIN, SIGNUP, UPDATE_EMAIL, UPDATE_PASSWORD, UPDATE_FIRSTNAME, UPDATE_LASTNAME, UPDATE_USERNAME, UPDATE_MAJOR,
+    UPDATE_GRAD,
 GET_USER_CHATS } from '../actions/user'
 import { UPDATE_ROOMNAME, MAKE_ROOM } from '../actions/chat';
 
@@ -19,8 +20,10 @@ const user = (state = {}, action) => {
             return { ...state, lastName: action.payload }
         case UPDATE_USERNAME:
             return { ...state, username: action.payload }
-        case UPDATE_LOCATION:
-            return { ...state, location: action.payload}
+        case UPDATE_MAJOR:
+            return { ...state, major: action.payload}
+        case UPDATE_GRAD:
+            return { ...state, gradYear: action.payload}
         case GET_USER_CHATS:
             return {...state, chats: action.payload}
         default:
