@@ -20,26 +20,29 @@ export default function HomeScreen({ navigation }) {
   useEffect(() => {
     const unsubscribe = firestore()
       .collection('THREADS')
+      // add this
+      .orderBy('latestMessage.createdAt', 'desc')
       .onSnapshot(querySnapshot => {
         const threads = querySnapshot.docs.map(documentSnapshot => {
           return {
             _id: documentSnapshot.id,
-            // give defaults
             name: '',
+            // add this
+            latestMessage: {
+              text: ''
+            },
+            // ---
             ...documentSnapshot.data()
           };
         });
-
+  
         setThreads(threads);
-
+  
         if (loading) {
           setLoading(false);
         }
       });
-
-    /**
-     * unsubscribe listener
-     */
+  
     return () => unsubscribe();
   }, []);
 
@@ -59,7 +62,7 @@ export default function HomeScreen({ navigation }) {
           >
             <List.Item
               title={item.name}
-              description='Item description'
+              description={item.latestMessage.text}
               titleNumberOfLines={1}
               titleStyle={styles.listTitle}
               descriptionStyle={styles.listDescription}

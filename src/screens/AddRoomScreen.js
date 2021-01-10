@@ -16,10 +16,18 @@ export default function AddRoomScreen({ navigation }) {
       firestore()
         .collection('THREADS')
         .add({
-          name: roomName
+          name: roomName,
+          latestMessage: {
+            text: `You have joined the room ${roomName}. Let people know where you're sitting!`,
+            createdAt: new Date().getTime()
           }
-        )
-        .then(() => {
+        })
+        .then(docRef => {
+          docRef.collection('MESSAGES').add({
+            text: `You have joined the room ${roomName}. Let people know where you're sitting!`,
+            createdAt: new Date().getTime(),
+            system: true
+          });
           navigation.navigate('Home');
         });
     }
