@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
             console.log(e);
           }
         },
-        register: async (u_display_name, u_major, email, password) => {
+        register: async (u_display_name, u_major, u_gradYear, email, password) => {
           try {
             const response = await auth().createUserWithEmailAndPassword(email, password);
             console.log('user created');
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
                 // username: username,
                 email: email,
                 major: u_major,
-                // gradYear: gradYear,
+                gradYear: u_gradYear,
                 display_name: u_display_name
               }
               console.log('user declared');

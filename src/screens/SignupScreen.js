@@ -13,6 +13,11 @@ export default function SignupScreen({ navigation }) {
 
   const [major, setMajor] = useState('');
 
+  const [textGradYear, setTextGradYear] = useState('');
+  const [numGradYear, setNumGradYear] = useState(0);
+
+
+
   return (
     <View style={styles.container}>
       <Title style={styles.titleText}>Register to chat</Title>
@@ -33,6 +38,14 @@ export default function SignupScreen({ navigation }) {
         autoCapitalize='none'
         onChangeText={u_major => setMajor(u_major)}
       />
+
+      <FormInput
+        labelName='Graduation Year'
+        keyboardType = 'numeric'
+        //value={textGradYear}
+        onChangeText={u_gradYear => setNumGradYear(Number(u_gradYear))}
+      />
+
       <FormInput
         labelName='Password'
         value={password}
@@ -43,7 +56,7 @@ export default function SignupScreen({ navigation }) {
         title='Signup'
         modeValue='contained'
         labelStyle={styles.loginButtonLabel}
-        onPress={() => register(display_name, major, email, password)}
+        onPress={() => register(display_name, major, numGradYear, email, password)}
       />
       <IconButton
         icon='keyboard-backspace'
@@ -55,6 +68,8 @@ export default function SignupScreen({ navigation }) {
     </View>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
