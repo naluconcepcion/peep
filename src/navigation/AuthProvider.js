@@ -1,20 +1,31 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
 
-import firebase from 'firebase';
-import 'firebase/firestore'
+import firestore from '@react-native-firebase/firestore';
 
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [display_name, set_display_name] = useState('');
 
   return (
     <AuthContext.Provider
       value={{
         user,
         setUser,
+        display_name,
+        set_display_name,
+        logout: async () => {
+
+          try {
+            await set_display_name(''); //hacky fix lmao
+            await auth().signOut();
+          } catch (e) {
+            console.error(e);
+          }
+        },
         login: async (email, password) => {
           try {
             await auth().signInWithEmailAndPassword(email, password);
@@ -37,20 +48,13 @@ export const AuthProvider = ({ children }) => {
                 display_name: u_display_name
               }
               console.log('user declared');
-              firebase.firestore().collection("users").doc(response.user.uid).set(user)
+              firestore().collection("users").doc(response.user.uid).set(user)
               console.log('user set');
               // dispatch({ type: SIGNUP, payload: user })
             }
             
           } catch (e) {
             console.log(e);
-          }
-        },
-        logout: async () => {
-          try {
-            await auth().signOut();
-          } catch (e) {
-            console.error(e);
           }
         }
       }}

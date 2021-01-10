@@ -7,10 +7,9 @@ import FormButton from '../components/FormButton';
 import { AuthContext } from '../navigation/AuthProvider';
 
 export default function SignupScreen({ navigation }) {
-  const { register } = useContext(AuthContext);
+  const { register, display_name, set_display_name } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [display_name, set_display_name] = useState('');
 
   return (
     <View style={styles.container}>

@@ -1,34 +1,44 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import { View, StyleSheet } from 'react-native';
 import { IconButton, Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-import firestore from '@react-native-firebase/firestore';
+import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import { AuthContext } from '../navigation/AuthProvider';
 
 export default function AddRoomScreen({ navigation }) {
-  const { user } = useContext(AuthContext);
-  const [roomName, setRoomName] = useState('');
+  const {user, display_name} = useContext(AuthContext);
+  const currentUser = user.toJSON();
+  // const [roomName, setRoomName] = useState('');
   // ... Firestore query will come here later
 
-  function handleButtonPress() {
+  async function handleButtonPress() {
 
+    console.log("nicememe");
+    const self_data = await firestore().collection('users').doc(currentUser.uid).get();
+    console.log(self_data);
+    const room_name = self_data.data()["display_name"];
+    console.log(room_name);
+    console.log("nicememe2");
 
-    setRoomName(user.name);
-    if (roomName.length > 0) {
+    const greeting = "Let people know where you're sitting!";
+
+    if (room_name) {
+      console.log("ROOM CREATED")
+
       firestore()
         .collection('THREADS')
         .add({
-          name: roomName,
+          name: room_name,
           latestMessage: {
-            text: `Let people know where you're sitting!`,
+            text: greeting,
             createdAt: new Date().getTime()
           }
         })
         .then(docRef => {
           docRef.collection('MESSAGES').add({
-            text: `Let people know where you're sitting!`,
+            text: greeting,
             createdAt: new Date().getTime(),
             system: true
           });
