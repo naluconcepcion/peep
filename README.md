@@ -11,6 +11,8 @@ Fix react native paper icons here:
 
 To get things working with firebase, obtain a copy of google-services.json from Shihao
 
+A debugger console is useful. Open it up with `ctrl + m` once you're in the app screen.
+
 ### Ubuntu Dev
 
 You'll need to have a terminal open and run:

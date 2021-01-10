@@ -11,6 +11,8 @@ export default function SignupScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [major, setMajor] = useState('');
+
   return (
     <View style={styles.container}>
       <Title style={styles.titleText}>Register to chat</Title>
@@ -26,6 +28,12 @@ export default function SignupScreen({ navigation }) {
         onChangeText={userEmail => setEmail(userEmail)}
       />
       <FormInput
+        labelName='Major'
+        value={major}
+        autoCapitalize='none'
+        onChangeText={u_major => setMajor(u_major)}
+      />
+      <FormInput
         labelName='Password'
         value={password}
         secureTextEntry={true}
@@ -35,7 +43,7 @@ export default function SignupScreen({ navigation }) {
         title='Signup'
         modeValue='contained'
         labelStyle={styles.loginButtonLabel}
-        onPress={() => register(display_name, email, password)}
+        onPress={() => register(display_name, major, email, password)}
       />
       <IconButton
         icon='keyboard-backspace'
