@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Firebase, {realtime} from './config/Firebase';
@@ -63,22 +62,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Login Page</Text>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
