@@ -13,4 +13,7 @@ web-build/
 .DS_Store
 
 #
-android/*
+
+*google-services.json
+
+android/app/build/
