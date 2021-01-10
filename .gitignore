@@ -11,4 +11,14 @@ web-build/
 
 # macOS
 .DS_Store
-.env
+
+#
+
+*google-services.json
+
+android/app/build/
+android/.gradle/
+
+
+ios/
+*.lock
