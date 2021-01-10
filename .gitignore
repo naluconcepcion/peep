@@ -18,3 +18,7 @@ web-build/
 
 android/app/build/
 android/.gradle/
+
+
+ios/
+*.lock
