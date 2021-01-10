@@ -4,6 +4,7 @@ import { AppRegistry } from 'react-native';
 // import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 import Routes from './src/navigation/Routes';
+import { AuthProvider } from './src/navigation/AuthProvider';
 import { name as appName } from './app.json';
 
 /**
