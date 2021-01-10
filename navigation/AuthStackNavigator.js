@@ -1,6 +1,7 @@
 import OpeningScreen from '../screens/OpeningScreen'
 import LoginScreen from '../screens/LoginScreen'
 import SignupScreen from '../screens/SignupScreen'
+import DemographicsScreen from '../screens/DemographicsScreen'
 
 // import TabOneScreen from '../screens/TabOneScreen'
 // import TabTwoScreen from '../screens/TabTwoScreen'
@@ -8,11 +9,6 @@ import SignupScreen from '../screens/SignupScreen'
 // import TabFourScreen from '../screens/TabFourScreen'
 // import TabFiveScreen from '../screens/TabFiveScreen'
 
-import { Ionicons } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -38,6 +34,10 @@ export default function AuthStackNavigator() {
       <AuthStack.Screen
         name="Signup"
         component = {SignupScreen}
+      />
+      <AuthStack.Screen
+        name="Demographics"
+        component = {DemographicsScreen}
       />
     </AuthStack.Navigator>
   );

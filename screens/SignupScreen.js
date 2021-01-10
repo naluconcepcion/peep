@@ -1,13 +1,10 @@
-import Firebase from '../config/Firebase';
-
 // import redux
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { updateFirstName, updateLastName, updateUsername, updateEmail, updatePassword, signup } from '../actions/user'
+import { updateFirstName, updateLastName, updateUsername, updateEmail, updatePassword, updateMajor, updateGradYear, signup } from '../actions/user'
 
 import React, { Component } from 'react';
-import { Button } from 'react-native-elements';
-import { Text, View, Image, StyleSheet, TouchableOpacity, Alert, TextInput } from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 // fonts
@@ -76,9 +73,10 @@ class SignupScreen extends Component {
         style={[styles.textBar, styles.names]}
         secureTextEntry={true}
         />
-        <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate("Demographics")}>
           <Text style={styles.buttonText}>SIGN UP</Text>
         </TouchableOpacity>
+        
       </View>
     );
   }
@@ -152,135 +150,12 @@ const styles = StyleSheet.create({
   },
 });
 
-//
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//       // <View style={[styles.fields, styles.text]}>
-//       <Image
-//         style={styles.tinyLogo}
-//         source={require('../assets/images/ontoologo.png')}
-//       />
-//         <TextInput
-//         value={this.props.user.firstName}
-//         onChangeText={firstName => this.props.updateFirstName(firstName)}
-//         style={[styles.textBar, styles.names]}
-//         placeholder='First Name'
-//         placeholderTextColor='#F9F9F9'
-//         />
-//         <TextInput
-//         value={this.props.user.lastName}
-//         onChangeText={lastName => this.props.updateLastName(lastName)}
-//         style={[styles.textBar, styles.names]}
-//         placeholder='Last Name'
-//         placeholderTextColor='#F9F9F9'
-//         />
-//       <TextInput
-//       value={this.props.user.username}
-//       onChangeText={username => this.props.updateUsername(username)}
-//       style={styles.textBar}
-//       placeholder='Username'
-//       placeholderTextColor='#F9F9F9'
-//       autoCapitalize='none'
-//       />
-//       <TextInput
-//       value={this.props.user.email}
-//       onChangeText={email => this.props.updateEmail(email)}
-//       style={styles.textBar}
-//       placeholder='Email Address'
-//       placeholderTextColor='#F9F9F9'
-//       autoCapitalize='none'
-//       />
-//       <TextInput
-//       value={this.props.user.password}
-//       onChangeText={password => this.props.updatePassword(password)}
-//       style={styles.textBar}
-//       placeholder='Password'
-//       placeholderTextColor='#F9F9F9'
-//       secureTextEntry={true}
-//       />
-//       // </View>
-//       <TouchableOpacity style={styles.arrow} onPress={this.handleSignUp}>
-//       <Text>HELLO</Text>
-//       </TouchableOpacity>
-//       </View>
-//     );
-//   }
-// }
-//
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     backgroundColor: '#212121',
-//     width: '100%',
-//     height: '100%',
-//   },
-//   tinyLogo: {
-//     position: 'relative',
-//     width: '50%',
-//     height: '10%',
-//     top: '-10%'
-//   },
-//   title: {
-//     position: 'relative',
-//     textAlign: 'center',
-//     fontSize: 64,
-//     fontWeight: 'bold',
-//     color: 'white',
-//     width: '100%',
-//     height: '10%',
-//     top: '0%',
-//     letterSpacing: 0.03,
-//
-//     textShadowColor: '#68B7AF',
-//     textShadowOffset: {width: 3, height: 3},
-//     textShadowRadius: 3
-//   },
-//   subtitle: {
-//     fontSize: 18,
-//     top: '0%',
-//     color: '#579B94',
-//     fontWeight: 'normal',
-//     paddingBottom: 20,
-//   },
-//   fields: {
-//     width: '90%',
-//     height: '40%',
-//     justifyContent: 'center',
-//   },
-//   textBar: {
-//     fontFamily: 'Avenir',
-//     position: 'relative',
-//     justifyContent: 'center',
-//     width: '70%',
-//     height: '5%',
-//     backgroundColor: '#F9F9F9',
-//     borderWidth: 1,
-//     borderColor: '#F9F9F9',
-//     borderBottomColor: '#212121',
-//     padding: 10,
-//   },
-//   names: {
-//     flexGrow: 1,
-//   },
-//   arrow: {
-//     position: 'relative',
-//     width: 100,
-//     height: 100,
-//     top: '10%',
-//     color: '#FFFFFF',
-//   },
-// });
-
-
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ updateFirstName, updateLastName, updateUsername, updateEmail, updatePassword, signup }, dispatch)
+  return bindActionCreators({ updateFirstName, updateLastName, updateUsername, updateEmail, updatePassword, updateMajor, updateGradYear, signup }, dispatch)
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
     user: state.user
   }

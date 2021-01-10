@@ -37,6 +37,12 @@ class MapScreen extends Component {
       return(
         <View style={styles.container}>
         <Text>Page loading!</Text>
+        <TouchableOpacity
+         style={styles.icon}
+         onPress={() => this.props.navigation.openDrawer()}>
+         <Image
+         source={require('../assets/images/menu.png')}/>
+         </TouchableOpacity>
         </View>
       )
   }
@@ -93,7 +99,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '5%',
     right: '7%',
-    color: '#F9F9F9'
+    color: '#32a852'
   },
 });
 
