@@ -1,30 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import { View, StyleSheet } from 'react-native';
 import { IconButton, Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import firestore from '@react-native-firebase/firestore';
 
-
+import { AuthContext } from '../navigation/AuthProvider';
 
 export default function AddRoomScreen({ navigation }) {
+  const { user } = useContext(AuthContext);
   const [roomName, setRoomName] = useState('');
   // ... Firestore query will come here later
 
   function handleButtonPress() {
+
+
+    setRoomName(user.name);
     if (roomName.length > 0) {
       firestore()
         .collection('THREADS')
         .add({
           name: roomName,
           latestMessage: {
-            text: `You have joined the room ${roomName}. Let people know where you're sitting!`,
+            text: `Let people know where you're sitting!`,
             createdAt: new Date().getTime()
           }
         })
         .then(docRef => {
           docRef.collection('MESSAGES').add({
-            text: `You have joined the room ${roomName}. Let people know where you're sitting!`,
+            text: `Let people know where you're sitting!`,
             createdAt: new Date().getTime(),
             system: true
           });
@@ -45,19 +49,19 @@ export default function AddRoomScreen({ navigation }) {
         />
       </View>
       <View style={styles.innerContainer}>
-        <Title style={styles.title}>Create a new chat room</Title>
-        <FormInput
+        <Title style={styles.title}>Create room</Title>
+        {/* <FormInput
           labelName='Room Name'
           value={roomName}
           onChangeText={text => setRoomName(text)}
           clearButtonMode='while-editing'
-        />
+        /> */}
         <FormButton
           title='Create'
           modeValue='contained'
           labelStyle={styles.buttonLabel}
           onPress={() => handleButtonPress()}
-          disabled={roomName.length === 0}
+          disabled={false}
         />
       </View>
     </View>

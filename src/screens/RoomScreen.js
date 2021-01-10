@@ -162,5 +162,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#6646ee',
     color: '#fff',
     fontWeight: 'bold'
+    
   }
 });

@@ -10,6 +10,7 @@ export default function SignupScreen({ navigation }) {
   const { register } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [real_name, set_real_name] = useState('');
 
   return (
     <View style={styles.container}>
@@ -30,7 +31,7 @@ export default function SignupScreen({ navigation }) {
         title='Signup'
         modeValue='contained'
         labelStyle={styles.loginButtonLabel}
-        onPress={() => register(email, password)}
+        onPress={() => register(real_name, email, password)}
       />
       <IconButton
         icon='keyboard-backspace'
