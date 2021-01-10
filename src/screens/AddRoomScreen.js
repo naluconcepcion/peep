@@ -16,10 +16,16 @@ export default function AddRoomScreen({ navigation }) {
   async function handleButtonPress() {
 
     console.log("nicememe");
+
+    // get data about yourself
     const self_data = await firestore().collection('users').doc(currentUser.uid).get();
+    
     console.log(self_data);
+    
+    // set room_name to a dictionary value access by key
     const room_name = self_data.data()["display_name"];
     console.log(room_name);
+    
     console.log("nicememe2");
 
     const greeting = "Let people know where you're sitting!";
