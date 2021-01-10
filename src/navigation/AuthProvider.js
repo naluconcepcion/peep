@@ -18,10 +18,25 @@ export const AuthProvider = ({ children }) => {
             console.log(e);
           }
         },
-        register: async (display_name, email, password) => {
+        register: async (u_display_name, email, password) => {
           try {
-            await auth().createUserWithEmailAndPassword(email, password);
-            user = Fauth().getInstance().getCurrentUser();
+            const response = await auth().createUserWithEmailAndPassword(email, password);
+            console.log('user created');
+            console.log(response)
+            if (response.user.uid) {
+              const user = {
+                uid: response.user.uid,
+                // username: username,
+                email: email,
+                // major: major,
+                // gradYear: gradYear,
+                display_name: u_display_name
+              }
+              console.log('user declared');
+              db.collection("users").doc(response.user.uid).set(user)
+              console.log('user set');
+              // dispatch({ type: SIGNUP, payload: user })
+            }
             
           } catch (e) {
             console.log(e);
