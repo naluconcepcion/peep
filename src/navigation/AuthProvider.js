@@ -1,6 +1,10 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
 
+import firebase from 'firebase';
+import 'firebase/firestore'
+
+
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
@@ -33,7 +37,7 @@ export const AuthProvider = ({ children }) => {
                 display_name: u_display_name
               }
               console.log('user declared');
-              db.collection("users").doc(response.user.uid).set(user)
+              firebase.firestore().collection("users").doc(response.user.uid).set(user)
               console.log('user set');
               // dispatch({ type: SIGNUP, payload: user })
             }
