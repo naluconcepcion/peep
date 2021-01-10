@@ -159,9 +159,6 @@ const styles = StyleSheet.create({
 
   systemMessageText: {
     fontSize: 14,
-    backgroundColor: '#6646ee',
-    color: '#fff',
-    fontWeight: 'bold'
-    
+    color: '#222',    
   }
 });
