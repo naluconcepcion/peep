@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 
 import AddRoomScreen from '../screens/AddRoomScreen';
+import { IconButton } from 'react-native-paper';
 
 // create two new instances
 const ChatAppStack = createStackNavigator();
@@ -21,7 +22,20 @@ function ChatApp() {
         }
       }}
     >
-      <ChatAppStack.Screen name='Home' component={HomeScreen} />
+      <ChatAppStack.Screen
+        name='Home'
+        component={HomeScreen}
+        options={({ navigation }) => ({
+          headerRight: () => (
+            <IconButton
+              icon='message-plus'
+              size={28}
+              color='#ffffff'
+              onPress={() => navigation.navigate('AddRoom')}
+            />
+          )
+        })}
+      />
     </ChatAppStack.Navigator>
   );
 }
