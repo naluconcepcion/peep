@@ -10,15 +10,15 @@ export default function SignupScreen({ navigation }) {
   const { register } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [real_name, set_real_name] = useState('');
+  const [display_name, set_display_name] = useState('');
 
   return (
     <View style={styles.container}>
       <Title style={styles.titleText}>Register to chat</Title>
       <FormInput
         labelName='Name'
-        value={real_name}
-        onChangeText={r_name=> set_real_name(r_name)}
+        value={display_name}
+        onChangeText={r_name=> set_display_name(r_name)}
       />
       <FormInput
         labelName='Email'
@@ -36,7 +36,7 @@ export default function SignupScreen({ navigation }) {
         title='Signup'
         modeValue='contained'
         labelStyle={styles.loginButtonLabel}
-        onPress={() => register(real_name, email, password)}
+        onPress={() => register(display_name, email, password)}
       />
       <IconButton
         icon='keyboard-backspace'

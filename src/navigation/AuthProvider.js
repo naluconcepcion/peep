@@ -18,9 +18,11 @@ export const AuthProvider = ({ children }) => {
             console.log(e);
           }
         },
-        register: async (email, password) => {
+        register: async (display_name, email, password) => {
           try {
             await auth().createUserWithEmailAndPassword(email, password);
+            user = Fauth().getInstance().getCurrentUser();
+            
           } catch (e) {
             console.log(e);
           }
