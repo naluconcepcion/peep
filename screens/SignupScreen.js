@@ -30,10 +30,6 @@ class SignupScreen extends Component {
     return (
       <View
       style={styles.container}>
-      <Image
-        style={styles.tinyLogo}
-        source={require('../assets/images/ontoologo.png')}
-      />
       <Icon name="chevron-left" size={20} color="white"
         onPress={() => this.props.navigation.navigate('Opening')}
         style={styles.back}

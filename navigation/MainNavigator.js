@@ -1,39 +1,16 @@
-import LoginScreen from '../screens/LoginScreen'
-import SignupScreen from '../screens/SignupScreen'
-
 import LocationInfo from '../screens/LocationInfo'
-import Map from '../screens/Map'
+import Landing from '../screens/Landing'
 import Chat from '../components/Chat'
 import Profile from '../components/Profile'
 import Mailbox from '../screens/Mailbox'
 
 import {
-  Ionicons
-} from '@expo/vector-icons';
-import {
-  Entypo
-} from '@expo/vector-icons';
-import {
-  AntDesign
-} from '@expo/vector-icons';
-import {
-  FontAwesome
-} from '@expo/vector-icons';
-import {
-  FontAwesome5
-} from '@expo/vector-icons';
-import {
   createStackNavigator
 } from '@react-navigation/stack';
-
-import {
-  createSwitchNavigator
-} from 'react-navigation'
 
 import * as React from 'react';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { DrawerActions } from 'react-navigation';
 
 const Drawer = createDrawerNavigator();
 
@@ -50,7 +27,7 @@ export default function MainStackNavigator() {
     drawerType={"right"}
     drawerPosition={'right'}
     drawerBackgroundColor={'#F9F9F9'}>
-      <Drawer.Screen name="Map" component={Map}/>
+      <Drawer.Screen name="Landing" component={Landing}/>
       <Drawer.Screen name="Mailbox" component={Mailbox}/>
       <Drawer.Screen name="Stranger Profile" component={Profile}/>
       <Drawer.Screen name="Chat" component={MainStackNavigator2}/>
@@ -74,9 +51,9 @@ function MainStackNavigator2() {
       LocationInfo
     }/>
 
-    <MainNavigator.Screen name = "MapScreen"
+    <MainNavigator.Screen name = "Landing"
     component = {
-      Map
+      Landing
     }/>
 
     <MainNavigator.Screen name = "Chat"

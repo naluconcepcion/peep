@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {
   Component
 } from 'react';
@@ -14,12 +13,9 @@ import {
 // redux magic
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getUser } from '../actions/user';
+import { getUser, logout } from '../actions/user';
 
-// firebase imports
-import Firebase, { realtime } from '../config/Firebase';
-
-class MapScreen extends Component {
+class Landing extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,6 +24,9 @@ class MapScreen extends Component {
     }
   }
 
+  handleLogout = () => {
+    this.props.logout();
+  }
   async componentDidMount() {
     // await this.fetchOthersNearby();
   }
@@ -36,13 +35,16 @@ class MapScreen extends Component {
   render() {
       return(
         <View style={styles.container}>
-        <Text>Page loading!</Text>
+        <Text>Temporary middleman page.</Text>
         <TouchableOpacity
          style={styles.icon}
          onPress={() => this.props.navigation.openDrawer()}>
          <Image
          source={require('../assets/images/menu.png')}/>
          </TouchableOpacity>
+         <TouchableOpacity style={styles.button} onPress={this.handleLogout}>
+          <Text style={styles.buttonText}>log out</Text>
+        </TouchableOpacity>
         </View>
       )
   }
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ getUser, }, dispatch)
+  return bindActionCreators({ getUser, logout }, dispatch)
 }
 
 const mapStateToProps = state => {
@@ -116,4 +118,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MapScreen)
+)(Landing)

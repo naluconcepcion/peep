@@ -32,7 +32,7 @@ class OpeningScreen extends Component {
       style={styles.container}>
       <Image
         style={styles.tinyLogo}
-        source={require('../assets/images/ontoologo.png')}
+        source={require('../assets/images/glasses.png')}
       />
         <TouchableOpacity
         title="LOG IN"
@@ -60,22 +60,20 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#212121',
+    backgroundColor: '#C7DDE5',
     width: '100%',
     height: '100%',
   },
   tinyLogo: {
     position: 'relative',
-    width: '50%',
-    height: '10%',
-    top: '-10%',
   },
   topButton: {
     position: 'relative',
     textAlign: 'center',
     justifyContent: 'center',
-    top: '0%',
-    width: '80%',
+    top: '30%',
+    width: '58%',
+    height: '6.5%',
     backgroundColor: '#F9F9F9',
     borderRadius: 23,
   },
@@ -83,12 +81,8 @@ const styles = StyleSheet.create({
     position: 'relative',
     textAlign: 'center',
     justifyContent: 'center',
-    top: '3%',
+    top: '33%',
     width: '80%',
-    backgroundColor: '#212121',
-    borderRadius: 23,
-    borderWidth: 2,
-    borderColor: '#F9F9F9'
   },
   darkText: {
     fontSize: 20,
@@ -101,14 +95,13 @@ const styles = StyleSheet.create({
     color: '#212121',
   },
   lightText: {
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: 'Avenir',
     lineHeight: 45,
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
     letterSpacing: 0.035,
-    color: '#F9F9F9',
   },
 });
 

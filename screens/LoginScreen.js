@@ -34,27 +34,22 @@ class LoginScreen extends Component {
     return (
       <View
       style={styles.container}>
-      <Image
-        style={styles.tinyLogo}
-        source={require('../assets/images/ontoologo.png')}
-      />
-      <Icon name="chevron-left" size={20} color="white"
-        onPress={() => this.props.navigation.navigate('Opening')}
-        style={styles.back}
-      />
-      <Text style={styles.textHeading}>Email</Text>
+      <View
+      style={styles.subcontainer}>
+        <Text style={styles.textHeading}>Username or Email</Text>
         <TextInput
         value={this.props.user.email}
         onChangeText={email => this.props.updateEmail(email)}
         style={[styles.textBar, styles.username]}
         />
-      <Text style={styles.textHeading}>Password</Text>
-        <TextInput
-        value={this.props.user.password}
-        onChangeText={password => this.props.updatePassword(password)}
-        style={[styles.textBar, styles.password]}
-        secureTextEntry={true}
-        />
+        <Text style={styles.textHeading}>Password</Text>
+          <TextInput
+          value={this.props.user.password}
+          onChangeText={password => this.props.updatePassword(password)}
+          style={[styles.textBar, styles.password]}
+          secureTextEntry={true}
+          />
+      </View>
         <TouchableOpacity
         title="LOG IN"
         style={styles.button}
@@ -77,18 +72,21 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  tinyLogo: {
-    position: 'relative',
-    width: '50%',
-    height: '10%',
-    top: '-10%'
+  subcontainer: {
+    width: '100%',
+    height: '80%',
+    top: -10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
   },
   textHeading: {
     fontFamily: 'Avenir',
     position: 'relative',
-    paddingRight: 190,
-    color: '#D2D2D2',
+    textTransform: 'uppercase',
+    color: '#676767',
     paddingTop: 10,
+    fontWeight: '800',
   },
   back: {
     top: 10,
@@ -100,7 +98,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir',
     position: 'relative',
     justifyContent: 'center',
-    width: '70%',
+    width: '80%',
     height: '5%',
     backgroundColor: '#F9F9F9',
     borderWidth: 1,
@@ -112,7 +110,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     textAlign: 'center',
     justifyContent: 'center',
-    top: '7%',
     width: '80%',
     backgroundColor: '#212121',
     borderRadius: 23,
